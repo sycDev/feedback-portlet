@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 7.4.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_7_4_0.dtd">
+
+<service-builder dependency-injector="ds" package-path="FeedbackService">
+	<namespace>FB</namespace>
+	<!--<entity data-source="sampleDataSource" local-service="true" name="Foo" remote-service="false" session-factory="sampleSessionFactory" table="foo" tx-manager="sampleTransactionManager uuid="true"">-->
+	<entity local-service="true" name="Feedback" remote-service="false" uuid="true">
+
+		<!-- PK fields -->
+
+		<column name="feedbackId" primary="true" type="long" id-type="increment"/>
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="feedbackName" type="String" />
+		<column name="feedbackEmail" type="String" />
+		<column name="feedbackSubject" type="String" />
+		<column name="feedbackMessage" type="String" />
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="feedbackId" order-by="asc"/>
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="findByGroupId" return-type="Collection">
+			<finder-column name="groupId" />
+		</finder>
+		<finder name="findByCompanyId" return-type="Collection">
+            <finder-column name="companyId"></finder-column>
+        </finder>
+        <finder name="findByFeedbackMessage" return-type="Collection">
+            <finder-column name="feedbackMessage"></finder-column>
+        </finder>
+
+		<!-- References -->
+
+		<reference entity="AssetEntry" package-path="com.liferay.portlet.asset" />
+		<reference entity="AssetTag" package-path="com.liferay.portlet.asset" />
+	</entity>
+</service-builder>

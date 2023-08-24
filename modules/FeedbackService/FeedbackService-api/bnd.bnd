@@ -1,0 +1,10 @@
+Bundle-Name: FeedbackService-api
+Bundle-SymbolicName: FeedbackService.api
+Bundle-Version: 1.0.0
+Export-Package:\
+	FeedbackService.exception,\
+	FeedbackService.model,\
+	FeedbackService.service,\
+	FeedbackService.service.persistence
+-check: EXPORTS
+-includeresource: META-INF/service.xml=../FeedbackService-service/service.xml
